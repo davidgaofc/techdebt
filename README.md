@@ -1,55 +1,61 @@
-# [Your Project Name]
+# Tackling Tech Debt with Transformers
 
-Welcome to [Your Project Name]! 🚀 Here, we're all about [brief description of what your project does, e.g., 'making data analysis easy and fun!'].
+Welcome to Tackling Tech Debt With Transformers! 🚀 Here, we're all about using fine-tuned transformer models to help open source repositories keep their technical debt in check.
 
-## What's [Your Project Name]?
+## Features
 
-[Your Project Name] is a [brief explanation of your project, its purpose, and what problem it solves].
+- **Feature 1**: Diff Extraction
+- **Feature 2**: Tech Debt Classifier
+- **Feature 3**: Tech Debt Label Generator
 
-## Features ✨
+## Overview
 
-- **Feature 1**: [Description]
-- **Feature 2**: [Description]
-- **Feature 3**: [Description]
-- More amazing features!
+### What is Technical Debt?
+"Implied cost of future reworking required when choosing an easy but limited solution instead of a better approach that could take more time." Wikipedia.
+Common application: Think of taking a shortcut when you are pushed for time. Later, you have to come back and rework code to "repay" the debt.
 
-## Getting Started 🏁
+### What Data Can We Use?
+The Technical Debt Dataset!
+* 78K commits from 33 Java projects
+* Annotations from SZZ Algorithm for technical debt
+* Labels from SonarQube for code smells
 
-Follow these simple steps to get [Your Project Name] up and running:
+Read more from their paper: [The Technical Debt Dataset](https://dl.acm.org/doi/abs/10.1145/3345629.3345630)
+and their repo: [Technical Debt Dataset](https://github.com/clowee/The-Technical-Debt-Dataset)
 
-1. **Step One**: [Description of the first step]
-2. **Step Two**: [Description of the second step]
-3. **Step Three**: [Description of the third step]
+Lenarduzzi, Valentina, Nyyti Saarimäki, and Davide Taibi. "The technical debt dataset." Proceedings of the fifteenth international conference on predictive models and data analytics in software engineering. 2019.
 
-## How to Use 🔍
+We use this dataset to create our own two datasets:
+* [Classification Dataset](https://huggingface.co/datasets/davidgaofc/techdebt)
+* [Label Generation Dataset](https://huggingface.co/datasets/davidgaofc/techdebt_label)
 
-Here's how you can make the most out of [Your Project Name]:
+### What Models Will We Train?
+We will be fine-tuning a small [CodeBERTa model](https://huggingface.co/huggingface/CodeBERTa-small-v1) for classification
+and a small [codeT5 model](https://huggingface.co/Salesforce/codet5-small) for label generation.
 
-- **How to do X**: [Instructions]
-- **How to do Y**: [Instructions]
-- **How to do Z**: [Instructions]
+This results in two models:
+* [Tech Debt Classifier](https://huggingface.co/davidgaofc/TechDebtClassifier)
+* [Tech Debt Label Generator](https://huggingface.co/davidgaofc/TechDebtLabeler)
 
-## Contributing 🤝
+## Interactive Demo
+Visit this [Huggingface space](https://huggingface.co/spaces/davidgaofc/TechDebtPipeline) created by me!
+You can see how the models work together!
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+## Critical Analysis
+* Impact: Now you can analyze the commits in any repo!
+  * You can see which commits might have tech debt!
+    * 95.4% accuracy on test set
+    * 0.949 F1 score on test set
+  * You can see what kind of tech debt it might be!
+* Next steps: 
+  * We can improve the model by using better/more data.
+  * Label generation needs to be evaluated more.
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+## Video Recording
 
-## License 📄
+## More Resources
+* [Technical Debt Classification in Issue Trackers using Natural Language Processing based on Transformers](https://ieeexplore.ieee.org/abstract/document/10207085)
+* [Learn how to fine-tune your own model with Huggingface](https://huggingface.co/docs/transformers/training)
+* [Specifically for classification - still Huggingface](https://huggingface.co/docs/transformers/v4.17.0/en/tasks/sequence_classification)
 
-[Your Project Name] is released under the [choose a license, e.g., MIT License]. See the LICENSE file for more details.
-
-## Fun Facts 🎉
-
-- [Fun fact about the project]
-- [Another fun fact or interesting tidbit]
-- [Keep them coming!]
-
-## Stay in Touch! 📬
-
-Follow us on [Social Media Platform] or join our mailing list for exciting updates!
 
