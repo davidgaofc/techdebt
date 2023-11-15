@@ -41,6 +41,36 @@ This results in two models:
 Visit this [Huggingface space](https://huggingface.co/spaces/davidgaofc/TechDebtPipeline) created by me!
 You can see how the models work together!
 
+Here's a good example that works well:
+```javascript
+@@ -0,0 +1,25 @@
++package org.apache.accumulo.server.test.randomwalk.shard;
++
++import java.util.Properties;
++import java.util.Random;
++import java.util.SortedSet;
++
++import org.apache.accumulo.server.test.randomwalk.State;
++import org.apache.accumulo.server.test.randomwalk.Test;
++import org.apache.hadoop.io.Text;
++
++
++public class Split extends Test {
++	
++    @Override
++    public void visit(State state, Properties props) throws Exception {
++        String indexTableName = (String)state.get("indexTableName");
++        int numPartitions = (Integer)state.get("numPartitions");
++        Random rand = (Random) state.get("rand");
++        
++        SortedSet<Text> splitSet = ShardFixture.genSplits(numPartitions, rand.nextInt(numPartitions)+1, "%06x");
++        log.debug("adding splits " + indexTableName);
++        state.getConnector().tableOperations().addSplits(indexTableName, splitSet);
++    }
++
++}
+```
+
 ## Critical Analysis
 * Impact: Now you can analyze the commits in any repo!
   * You can see which commits might have tech debt!
