@@ -52,7 +52,7 @@ You can see how the models work together!
   * Label generation needs to be evaluated more.
 
 ## Video Recording
-[YouTube Video Overview of this Project](https://studio.youtube.com/video/m2PswzlzPA8/edit)
+[YouTube Video Overview of this Project](https://youtu.be/zzC-xD28D3c)
 
 ## More Resources
 * [Technical Debt Classification in Issue Trackers using Natural Language Processing based on Transformers](https://ieeexplore.ieee.org/abstract/document/10207085)
